@@ -570,6 +570,59 @@ if ( ! class_exists( 'rtForm' ) ) {
 		}
 
 		/**
+		 * Generate rtmedia html inputfile in admin options.
+		 *
+		 * @access protected
+		 *
+		 * @param $attributes
+		 *
+		 * @return string
+		 * @throws rtFormInvalidArgumentsException
+		 */
+		protected function generate_inputfile( $attributes ) {
+
+			$element = 'rtFile';
+			if ( is_array( $attributes ) ) {
+
+				/* Starting the input tag */
+				$html = '<input type="file" ';
+
+				/* generating attributes */
+				$html .= $this->processAttributes( $element, $attributes );
+
+				/* ending the tag */
+				$html .= ' /><input type="hidden" name="rtmedia-options[' . $attributes[ "name" ] . '_hid]" value="' . $attributes[ 'value' ] . '" />';
+				if ( isset( $attributes[ 'value' ] ) && ! empty( $attributes[ 'value' ] ) ) {
+					$img_src = wp_get_attachment_image_src( $attributes[ 'value' ], 'thumbnail' );
+					$img_path = get_attached_file( $attributes[ 'value' ] );
+
+					if ( file_exists( $img_path ) && ! empty( $img_src[ 0 ] ) ) {
+						$html .= '<span class="rtm-file-preview"><img src="' . $img_src[ 0 ] . '" width="100">'
+								. '<a href="#" class="no-popup rtm-delete-preview" title="Delete this file" data-media_type="' . $attributes[ "name" ] . '">'
+								. '<i class="remove-from-queue dashicons dashicons-dismiss"></i>'
+								. '</a></span>';
+					}
+				}
+
+				if ( isset( $attributes[ 'label' ] ) ) {
+					if ( isset( $attributes[ 'labelClass' ] ) ) {
+						$html = $this->enclose_label( $element, $html, $attributes[ 'label' ], $attributes[ 'labelClass' ] );
+					} else {
+						$html = $this->enclose_label( $element, $html, $attributes[ 'label' ] );
+					}
+				}
+
+				if ( isset( $attributes[ 'show_desc' ] ) && $attributes[ 'show_desc' ] ) {
+					$html .= $this->generate_element_desc( $attributes );
+				}
+
+				return $html;
+			} else {
+				throw new rtFormInvalidArgumentsException( 'attributes' );
+			}
+		}
+
+		/**
 		 * Get rtmedia html textbox in admin options.
 		 *
 		 * @access public
@@ -586,6 +639,25 @@ if ( ! class_exists( 'rtForm' ) ) {
 
 		public function display_textbox( $args = '' ) {
 			echo $this->get_textbox( $args );
+		}
+
+		/**
+		 * Get rtmedia html input file in admin options.
+		 *
+		 * @access public
+		 *
+		 * @param string/array $attributes
+		 *
+		 * @return string
+		 * @throws rtFormInvalidArgumentsException
+		 */
+		public function get_inputfile( $attributes = '' ) {
+
+			return $this->generate_inputfile( $attributes );
+		}
+
+		public function display_inputfile( $args = '' ) {
+			echo $this->get_inputfile( $args );
 		}
 
 		/**
