@@ -79,6 +79,7 @@ if ( ! class_exists( 'rtForm' ) ) {
 		 */
 		private static $id_counts = array(
 			'rtText'     => 0,
+			'rtFile' => 0,
 			'rtNumber'   => 0,
 			'rtDate'     => 0,
 			'rtRadio'    => 0,
@@ -90,6 +91,7 @@ if ( ! class_exists( 'rtForm' ) ) {
 		);
 		private static $default_classes = array(
 			'rtText'     => 'rtm-form-text',
+			'rtFile' => 'rtm-form-file',
 			'rtNumber'   => 'rtm-form-number',
 			'rtDate'     => 'rtm-form-date',
 			'rtRadio'    => 'rtm-form-radio',
@@ -235,6 +237,7 @@ if ( ! class_exists( 'rtForm' ) ) {
 			switch ( $element ) {
 				case 'rtHidden': //hidden
 				case 'rtNumber': //number
+				case 'rtFile' : //text
 				case 'rtText' : //text
 					$html .= 'value="';
 					$html .= esc_attr( ( isset( $attributes['value'] ) ) ? $attributes['value'] : '' );
