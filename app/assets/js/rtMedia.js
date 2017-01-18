@@ -477,6 +477,32 @@ jQuery( 'document' ).ready( function( $ ) {
 				return true;
 		}
 	);
+	
+	/* rtMedia registered hook for masonary view after photos uploaded in activity */
+	rtMediaHook.register( 'rtmedia_js_after_activity_added', function() {
+		
+		if ( typeof buddypress_enableMasonryActivity != 'undefined' && buddypress_enableMasonryActivity == '1' && jQuery( '.rtmedia-activity-container .rtmedia-list.rtm-no-masonry' ).length == 0 ) {
+			rtm_masonry_container = jQuery( '.activity-item.just-posted .rtmedia-activity-container .rtm-activity-media-list.masonry' ).first();
+			var imgs = $(rtm_masonry_container).find('img');
+			var count = imgs.length;
+			if ( count ) {
+				imgs.load(function() {
+					count--;					
+					if (!count) {
+						rtm_masonry_container.masonry( {
+						itemSelector: '.rtmedia-list-item',	
+					} );
+					}
+				});
+			} else {
+				rtm_masonry_container.masonry( {
+					itemSelector: '.rtmedia-list-item',	
+				} );
+			}			
+		}
+		rtm_masonry_container = jQuery( '.rtmedia-activity-container .rtmedia-list, .rtmedia-container .rtmedia-list' );
+		rtm_masonry_reload( rtm_masonry_container );
+	})
 
 	function rtmedia_init_popup_navigation() {
 		var rtm_mfp = jQuery.magnificPopup.instance;
@@ -608,11 +634,12 @@ jQuery( 'document' ).ready( function( $ ) {
 	}
 
 	//    Masonry code
-	if ( typeof rtmedia_masonry_layout != 'undefined' && rtmedia_masonry_layout == 'true' && jQuery( '.rtmedia-container .rtmedia-list.rtm-no-masonry' ).length == 0 ) {
-		rtm_masonry_container = jQuery( '.rtmedia-container .rtmedia-list' );
+	if ( typeof buddypress_enableMasonryActivity != 'undefined' && buddypress_enableMasonryActivity == '1' && jQuery( '.rtmedia-container .rtmedia-list.rtm-no-masonry' ).length == 0 ) {
+		rtm_masonry_container = jQuery( '.rtmedia-activity-container .rtmedia-list, .rtmedia-container .rtmedia-list' );
 		rtm_masonry_container.masonry( {
-			itemSelector: '.rtmedia-list-item'
+			itemSelector: '.rtmedia-list-item'			
 		} );
+		
 		setInterval( function() {
 			jQuery.each( jQuery( '.rtmedia-list.masonry .rtmedia-item-title' ), function( i, item ) {
 				jQuery( item ).width( jQuery( item ).siblings( '.rtmedia-item-thumbnail' ).children( 'img' ).width() );
@@ -720,8 +747,10 @@ function rtm_is_element_exist( el ) {
 function rtm_masonry_reload( el ) {
 	setTimeout( function() {
 		// We make masonry recalculate the element based on their current state.
-		el.masonry( 'reload' );
-	}, 250 );
+		if(typeof masonry == 'function'){
+			el.masonry( 'reload' );
+		}
+	}, 550 );
 }
 
 /*
@@ -871,6 +900,12 @@ function rtm_masonry_reload( el ) {
 
 window.onload = function() {
 	if ( typeof rtmedia_masonry_layout != 'undefined' && rtmedia_masonry_layout == 'true' && jQuery( '.rtmedia-container .rtmedia-list.rtm-no-masonry' ).length == 0 ) {
+		rtm_masonry_reload( rtm_masonry_container );
+	}
+	
+	if ( typeof buddypress_enableMasonryActivity != 'undefined' && buddypress_enableMasonryActivity == '1' && jQuery( '.rtmedia-activity-container .rtmedia-list.rtm-no-masonry' ).length == 0 ) {
+			rtm_masonry_container = jQuery( '.rtmedia-activity-container .rtmedia-list' );
+		
 		rtm_masonry_reload( rtm_masonry_container );
 	}
 };

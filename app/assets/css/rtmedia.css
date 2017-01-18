@@ -1477,6 +1477,13 @@ img.mfp-img {
   box-sizing: inherit;
 }
 
+#buddypress #activity-stream li{
+	padding: 0 0 10px 0;
+}
+#buddypress ul.rtm-activity-media-list.masonry li {
+	margin: 0 5px; 
+}
+
 #buddypress ul.rtmedia-list li {
   border-bottom: 0;
   padding-bottom: 0;

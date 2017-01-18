@@ -14,6 +14,7 @@ function have_rtmedia() {
 	return $rtmedia_query->have_media();
 
 }
+wp_enqueue_script();
 
 /**
  * Rewinds the db pool of media album and resets it to beginning
@@ -3546,3 +3547,15 @@ function rtmedia_activate_addon_license( $addon = array() ) {
 	return $license_data;
 
 }
+
+
+/**
+ * Adding masonry on activity
+ * @param type $class
+ * @return type
+ */
+function rtmedia_activity_masonry( $class ) {
+	return $class . ' masonry';
+}
+
+add_filter( 'rtmedia_activity_ul_class', 'rtmedia_activity_masonry' );
