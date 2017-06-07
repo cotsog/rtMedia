@@ -25,7 +25,7 @@ $buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoMedia( ConstantsPage::$user_name );
 
 $uploadmedia = new UploadMediaPage( $I );
-    $uploadmedia->uploadMediaUsingStartUploadButton( ConstantsPage::$user_name, ConstantsPage::$video_name );
+$uploadmedia->uploadMediaUsingStartUploadButton( ConstantsPage::$user_name, ConstantsPage::$video_name );
 
 $uploadmedia->firstThumbnailMedia();
 
