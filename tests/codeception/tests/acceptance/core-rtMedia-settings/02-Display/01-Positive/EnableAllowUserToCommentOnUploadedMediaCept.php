@@ -7,7 +7,7 @@ use Page\Login as LoginPage;
 use Page\UploadMedia as UploadMediaPage;
 use Page\DashboardSettings as DashboardSettingsPage;
 use Page\Constants as ConstantsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $comment_str = 'test comment';
 
@@ -21,7 +21,7 @@ $settings = new DashboardSettingsPage( $I );
 $settings->gotoTab( ConstantsPage::$display_tab, ConstantsPage::$display_tab_url );
 $settings->verifyEnableStatus( ConstantsPage::$str_comment_checkbox_label, ConstantsPage::$comment_checkbox );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoMedia( ConstantsPage::$user_name );
 $temp = $buddypress->countMedia( ConstantsPage::$media_per_page_on_media_selector ); // $temp will receive the available no. of media
 

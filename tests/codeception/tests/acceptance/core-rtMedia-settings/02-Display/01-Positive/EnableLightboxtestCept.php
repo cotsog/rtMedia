@@ -7,7 +7,7 @@ use Page\Login as LoginPage;
 use Page\UploadMedia as UploadMediaPage;
 use Page\DashboardSettings as DashboardSettingsPage;
 use Page\Constants as ConstantsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'To check if the lightbox is enabled' );
@@ -19,7 +19,7 @@ $settings = new DashboardSettingsPage( $I );
 $settings->gotoTab( ConstantsPage::$display_tab, ConstantsPage::$display_tab_url );
 $settings->verifyEnableStatus( ConstantsPage::$str_lightbox_checkbox_label, ConstantsPage::$lightbox_checkbox, ConstantsPage::$custom_css_tab ); //Last arg refers scroll postion
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoMedia( ConstantsPage::$user_name );
 
 $uploadmedia = new UploadMediaPage( $I );

@@ -7,7 +7,7 @@ use Page\Login as LoginPage;
 use Page\Constants as ConstantsPage;
 use Page\UploadMedia as UploadMediaPage;
 use Page\DashboardSettings as DashboardSettingsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $scrollToDirectUpload = ConstantsPage::$masonary_checkbox;
 
@@ -21,7 +21,7 @@ $settings = new DashboardSettingsPage( $I );
 $settings->gotoTab( ConstantsPage::$media_sizes_tab, ConstantsPage::$media_sizes_tab_url );
 $settings->setMediaSize( ConstantsPage::$single_player_label, ConstantsPage::$single_video_width_textbox, ConstantsPage::$single_video_width, ConstantsPage::$single_video_height_textbox, ConstantsPage::$single_video_height );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoMedia( ConstantsPage::$user_name );
 
 $uploadmedia = new UploadMediaPage( $I );

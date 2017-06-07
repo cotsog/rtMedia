@@ -6,7 +6,7 @@
 use Page\Login as LoginPage;
 use Page\DashboardSettings as DashboardSettingsPage;
 use Page\Constants as ConstantsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 use Page\UploadMedia as UploadMediaPage;
 
 $scrollPosition = ConstantsPage::$num_of_media_textbox;
@@ -22,7 +22,7 @@ $settings = new DashboardSettingsPage( $I );
 $settings->gotoTab( ConstantsPage::$display_tab, ConstantsPage::$display_tab_url );
 $settings->verifyEnableStatus( ConstantsPage::$str_masonary_checkbox_label, ConstantsPage::$masonary_checkbox, $scrollPosition );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoMedia( ConstantsPage::$user_name );
 
 $uploadmedia = new UploadMediaPage( $I );

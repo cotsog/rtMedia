@@ -7,7 +7,7 @@
 use Page\Login as LoginPage;
 use Page\Constants as ConstantsPage;
 use Page\DashboardSettings as DashboardSettingsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $scrollPosition = ConstantsPage::$num_of_media_textbox;
 
@@ -21,7 +21,7 @@ $settings = new DashboardSettingsPage( $I );
 $settings->gotoTab( ConstantsPage::$display_tab, ConstantsPage::$display_tab_url );
 $settings->verifySelectOption( ConstantsPage::$str_media_display_pagination_label, ConstantsPage::$load_more_radio_button, $scrollPosition );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoMedia( ConstantsPage::$user_name );
 
 $I->seeElementInDOM( ConstantsPage::$load_more );

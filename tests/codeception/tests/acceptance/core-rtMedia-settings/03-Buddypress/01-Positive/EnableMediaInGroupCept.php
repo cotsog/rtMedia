@@ -5,7 +5,7 @@
  */
 use Page\Login as LoginPage;
 use Page\Constants as ConstantsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 use Page\DashboardSettings as DashboardSettingsPage;
 
 $I = new AcceptanceTester( $scenario );
@@ -26,7 +26,7 @@ $I->seeElement( ConstantsPage::$save_bp_settings );
 $I->click( ConstantsPage::$save_bp_settings );
 $I->waitForElement( ConstantsPage::$save_msg_selector, 20 );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoGroup();
 
 $temp = $buddypress->countGroup( ConstantsPage::$group_list_selector );

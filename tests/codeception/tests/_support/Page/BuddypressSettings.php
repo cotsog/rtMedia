@@ -4,7 +4,7 @@ namespace Page;
 
 use Page\Constants as ConstantsPage;
 
-class BuddypressSettings {
+class BuddyPressSettings {
 
 	public static $userProfileLink = 'a#user-xprofile';
 	public static $media_link_on_profile = 'a#user-media';

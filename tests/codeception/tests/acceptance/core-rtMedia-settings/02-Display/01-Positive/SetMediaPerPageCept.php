@@ -7,7 +7,7 @@ use Page\Login as LoginPage;
 use Page\Constants as ConstantsPage;
 use Page\UploadMedia as UploadMediaPage;
 use Page\DashboardSettings as DashboardSettingsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $scrollPos = ConstantsPage::$custom_css_tab;
 $scrollToDirectUpload = ConstantsPage::$masonary_checkbox;
@@ -26,7 +26,7 @@ if ( $I->grabValueFrom( ConstantsPage::$num_of_media_textbox ) != ConstantsPage:
 	$settings->setValue( ConstantsPage::$num_of_media_perpage_label, ConstantsPage::$num_of_media_textbox, ConstantsPage::$num_of_media_per_page, $scrollPos );
 }
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoMedia( ConstantsPage::$user_name );
 $temp = $buddypress->countMedia( ConstantsPage::$media_per_page_on_media_selector ); // $temp will receive the available no. of media
 

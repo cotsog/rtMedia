@@ -8,7 +8,7 @@ use Page\Login as LoginPage;
 use Page\Constants as ConstantsPage;
 use Page\UploadMedia as UploadMediaPage;
 use Page\DashboardSettings as DashboardSettingsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'To disable the privacy settings for user.' );
@@ -21,7 +21,7 @@ $settings->gotoTab( ConstantsPage::$privacy_tab, ConstantsPage::$privacy_tab_url
 $settings->verifyEnableStatus( ConstantsPage::$privacy_label, ConstantsPage::$privacy_checkbox );
 $settings->verifyDisableStatus( ConstantsPage::$privacy_user_override_label, ConstantsPage::$privacy_user_override_checkbox );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoActivityPage( ConstantsPage::$user_name );
 
 $I->dontSeeElement( ConstantsPage::$privacy_dropdown );

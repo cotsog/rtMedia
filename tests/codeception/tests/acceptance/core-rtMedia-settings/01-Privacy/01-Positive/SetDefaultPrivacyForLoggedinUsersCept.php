@@ -9,7 +9,7 @@ use Page\Logout as LogoutPage;
 use Page\Constants as ConstantsPage;
 use Page\UploadMedia as UploadMediaPage;
 use Page\DashboardSettings as DashboardSettingsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $status = 'For loggedin uses only..';
 
@@ -29,7 +29,7 @@ $I->amOnPage( '/wp-admin/admin.php?page=rtmedia-settings#rtmedia-bp' );
 $I->waitForElement( ConstantsPage::$buddypress_tab , 10);
 $settings->verifyEnableStatus( ConstantsPage::$str_media_upload_from_activity_label, ConstantsPage::$media_upload_from_activity_checkbox );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoActivityPage( ConstantsPage::$user_name );
 
 $uploadmedia = new UploadMediaPage( $I );

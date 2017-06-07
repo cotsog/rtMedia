@@ -6,7 +6,7 @@
 use Page\Login as LoginPage;
 use Page\Constants as ConstantsPage;
 use Page\DashboardSettings as DashboardSettingsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Enable Show Album description.' );
@@ -21,7 +21,7 @@ $settings->verifyEnableStatus( ConstantsPage::$str_enable_media_in_pro_label, Co
 $settings->verifyEnableStatus( ConstantsPage::$str_enable_album_label, ConstantsPage::$enable_album_checkbox );
 $settings->verifyEnableStatus( ConstantsPage::$str_show_album_desc_label, ConstantsPage::$album_desc_checkbox );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 
 $buddypress->createNewAlbum();
 $buddypress->editAlbumDesc();

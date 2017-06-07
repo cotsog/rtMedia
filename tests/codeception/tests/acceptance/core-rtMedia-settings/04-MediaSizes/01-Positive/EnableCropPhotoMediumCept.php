@@ -7,7 +7,7 @@ use Page\Login as LoginPage;
 use Page\DashboardSettings as DashboardSettingsPage;
 use Page\UploadMedia as UploadMediaPage;
 use Page\Constants as ConstantsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $scrollToDirectUpload = ConstantsPage::$masonary_checkbox;
 
@@ -24,7 +24,7 @@ $I->amOnPage( '/wp-admin/admin.php?page=rtmedia-settings#rtmedia-bp' );
 $I->waitForElement( ConstantsPage::$buddypress_tab, 10 );
 $settings->verifyEnableStatus( ConstantsPage::$str_media_upload_from_activity_label, ConstantsPage::$media_upload_from_activity_checkbox );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoActivityPage( ConstantsPage::$user_name );
 
 $uploadmedia = new UploadMediaPage( $I );

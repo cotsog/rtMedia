@@ -7,7 +7,7 @@ use Page\Login as LoginPage;
 use Page\Constants as ConstantsPage;
 use Page\UploadMedia as UploadMediaPage;
 use Page\DashboardSettings as DashboardSettingsPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Check if the user is allowed to upload media from activity stream.' );
@@ -25,7 +25,7 @@ $I->amOnPage( '/wp-admin/admin.php?page=rtmedia-settings#rtmedia-display' );
 $I->waitForElement( ConstantsPage::$display_tab, 10 );
 $settings->verifyDisableStatus( ConstantsPage::$str_direct_uplaod_checkbox_label, ConstantsPage::$directUploadCheckbox, ConstantsPage::$masonary_checkbox );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoActivityPage( ConstantsPage::$user_name );
 
 $I->seeElementInDOM( ConstantsPage::$upload_button_on_activity_page );

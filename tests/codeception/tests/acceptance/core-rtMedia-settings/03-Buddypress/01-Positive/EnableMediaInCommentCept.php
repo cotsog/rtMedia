@@ -7,7 +7,7 @@ use Page\Login as LoginPage;
 use Page\Constants as ConstantsPage;
 use Page\DashboardSettings as DashboardSettingsPage;
 use Page\UploadMedia as UploadMediaPage;
-use Page\BuddypressSettings as BuddypressSettingsPage;
+use Page\BuddyPressSettings as BuddyPressSettingsPage;
 
 $comment_str = 'This is the comment while uploading media.';
 
@@ -29,7 +29,7 @@ $I->waitForElement( ConstantsPage::$buddypress_tab, 10 );
 $settings->verifyEnableStatus( ConstantsPage::$str_enable_media_in_pro_label, ConstantsPage::$enable_media_in_pro_checkbox ); //We need to check media is enabled for profile or not.
 $settings->verifyEnableStatus( ConstantsPage::$str_media_in_comment_label, ConstantsPage::$media_in_comment_checkbox );
 
-$buddypress = new BuddypressSettingsPage( $I );
+$buddypress = new BuddyPressSettingsPage( $I );
 $buddypress->gotoMedia( ConstantsPage::$user_name );
 $temp = $buddypress->countMedia( ConstantsPage::$media_per_page_on_media_selector ); // $temp will receive the available no. of media
 
