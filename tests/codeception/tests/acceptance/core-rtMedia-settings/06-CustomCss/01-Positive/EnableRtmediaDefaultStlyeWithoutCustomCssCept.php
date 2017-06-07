@@ -20,7 +20,7 @@ $settings->verifyEnableStatus( ConstantsPage::$default_style_label, ConstantsPag
 
 $value = $I->grabValueFrom( ConstantsPage::$css_text_area );
 echo "value of textarea is = \n" . $value;
-$settings->setValue( ConstantsPage::$custom_css_label, ConstantsPage::$css_text_area, ConstantsPage::$customCssEmptyValue );
+$settings->setValue( ConstantsPage::$custom_css_label, ConstantsPage::$css_text_area, ConstantsPage::$custom_css_empty_value );
 
 $buddypress = new BuddypressSettingsPage( $I );
 $buddypress->gotoActivityPage( ConstantsPage::$user_name );
