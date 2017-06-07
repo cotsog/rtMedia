@@ -1,25 +1,18 @@
 dist: trusty
-
 language:
-    - php
-
+- php
 branches:
   only:
-    - wordpress-standards
+  - wordpress-standards
 php:
-     - 5.6.4
-#    - 7.1
-
+- 5.6.4
 addons:
   browserstack:
     username: rtcamp3
     access_key:
-     secure: VFBgrctr5uDgE4PIea7QoXJDdQqq5TjPhvEcEBBcymbsP7cYUniD8K/0At+hArw5fqKajNlPZZjbxEhBRVv4hXNin++S6qwLeHCQMyHWQTt5vOULL16R2GsO30QUkFT/Egw2rh9v6qBei7Ol2mwz7i+XzZQE8cSDa/TJl7wMVwU=
-
-
+      secure: VFBgrctr5uDgE4PIea7QoXJDdQqq5TjPhvEcEBBcymbsP7cYUniD8K/0At+hArw5fqKajNlPZZjbxEhBRVv4hXNin++S6qwLeHCQMyHWQTt5vOULL16R2GsO30QUkFT/Egw2rh9v6qBei7Ol2mwz7i+XzZQE8cSDa/TJl7wMVwU=
 before_install:
 - rm -rf ~/.gnupg
-
 cache:
   paths:
   - vendor/
@@ -31,7 +24,8 @@ before_script:
 - wget -qO ee rt.cx/ee && sudo bash ee
 - sudo apt-get update
 - sudo tail /var/log/ee/ee.log
-- sudo ee site create automation.rtmedia.me --wp --user=ADMINUSER --email=sumeet.sarna@rtcamp.com --pass=ADMINPASS
+- sudo ee site create automation.rtmedia.me --wp --user=ADMINUSER --email=sumeet.sarna@rtcamp.com
+  --pass=ADMINPASS
 - sudo sed -i '/^127.0.0.1/ s/$/ automation.rtmedia.me/' /etc/hosts
 - sudo chmod 777 -R /var/www
 - cd /var/www/automation.rtmedia.me/htdocs/wp-content/plugins/ && mkdir rtMedia
@@ -42,7 +36,6 @@ before_script:
 - wp plugin activate --all
 - cd /var/www/automation.rtmedia.me/htdocs/wp-content/themes/
 - wp theme activate twentysixteen
-#- wp theme activate twentyseventeen
 - cd $PLUGIN_DIR
 - cd tests/codeception/tests/_data
 - git clone --depth=1 https://github.com/rtCamp/rtmedia-test-data.git test-data
@@ -55,3 +48,6 @@ before_script:
 - export PATH="$PATH:/home/travis/build/umeshnevase/rtMedia/tests/codeception/vendor/bin"
 script:
 - codecept run acceptance --steps
+env:
+  global:
+    secure: gVa8nq/dALI6BSWpR1CNDO4oELRwDW8L+3dQk0dTqjY5DReQ7F8XdnrILYJAoCc41QPMhT4M+zxvtrtgVsaB/sCrKqvf3dUgREoHu4I8AhyIFdRWiOCDr7obYgqXhnn8Vn6/hu9v4wHly5mRUvXyKUW5kXABDHwkGLQmhtfDSDwFfm0Fv4808kiDf21cvuRv460mQSt/xI2HkLUccSx8qXaiveDpnMGW6itFeohmm0aOeoWjcS/dInxOWsK5iNz1/v7rIv+LYczM2V2e5C+he0YnRtUC9JHQrpgZSRvHVeYy43IM8LWnBqfThVhR2mWxYYV0bOoFuR/3NTJAB4x5IAuMwiAQF7XLRZmzx0TtQCzc5i8Vi5I2XyhYMO0H0zU86KZEqd6mV7rlMOP/p9qfZPlXB24AZrFDzWxgWH3jkFkMDJQWCWF3cHbQ4dib6SXhcb46ySUEXxL+C3X6vuDDeIboQzE19mWYKN3wOP3i50k9CM65XfWtuIagogy1zm5k4HXzWGUxTYzrJjNyd4jpr0zbWdBQ0VcwCTDfclfncT0idbgwbm1A4rgoGe03xHmIS1xhr+AjZ/oQS7VqJLLGvSyAb5O8jBpvfWYdsz0efE5rcNND1vcySHGroBhxASs/LhSVGkNkhwbgvfS3DPHt2d/HupeQnn25rFoLUwFwvvU=
