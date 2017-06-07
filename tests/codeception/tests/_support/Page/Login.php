@@ -20,7 +20,7 @@ class Login {
 		$this->tester = $I;
 	}
 
-	public function loginAsAdmin( $wpUserName, $wpPassword, $saveSession = true ) {
+	public function loginAsAdmin( $wpUserName, $wpPassword, $save_session = true ) {
 		$I = $this->tester;
 
 		$I->amOnPage( '/wp-admin' );
@@ -32,7 +32,7 @@ class Login {
 			return;
 		}
 
-		if ( ! $saveSession ) {
+		if ( ! $save_session ) {
 			$I->waitForElement( self::$wpSubmitButton, 10 );
 		}
 
@@ -46,7 +46,7 @@ class Login {
 		$I->click( self::$wpSubmitButton );
 		$I->waitForElement( self::$dashBoardMenu, 10 );
 
-		if ( $saveSession ) {
+		if ( $save_session ) {
 			$I->saveSessionSnapshot( 'login' ); //Saving session
 			echo "Session saved!";
 		} else {

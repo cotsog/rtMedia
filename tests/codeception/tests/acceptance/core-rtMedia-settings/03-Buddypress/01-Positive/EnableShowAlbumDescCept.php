@@ -12,14 +12,14 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Enable Show Album description.' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$buddypressTab, ConstantsPage::$buddypressTabUrl );
+$settings->gotoTab( ConstantsPage::$buddypress_tab, ConstantsPage::$buddypress_tab_url );
 
-$settings->verifyEnableStatus( ConstantsPage::$strEnableMediaInProLabel, ConstantsPage::$enableMediaInProCheckbox );
-$settings->verifyEnableStatus( ConstantsPage::$strEnableAlbumLabel, ConstantsPage::$enableAlbumCheckbox );
-$settings->verifyEnableStatus( ConstantsPage::$strShowAlbumDescLabel, ConstantsPage::$albumDescCheckbox );
+$settings->verifyEnableStatus( ConstantsPage::$str_enable_media_in_pro_label, ConstantsPage::$enable_media_in_pro_checkbox );
+$settings->verifyEnableStatus( ConstantsPage::$str_enable_album_label, ConstantsPage::$enable_album_checkbox );
+$settings->verifyEnableStatus( ConstantsPage::$str_show_album_desc_label, ConstantsPage::$album_desc_checkbox );
 
 $buddypress = new BuddypressSettingsPage( $I );
 

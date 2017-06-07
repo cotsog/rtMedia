@@ -12,35 +12,35 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'To check if media tab is enabled for group' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$buddypressTab, ConstantsPage::$buddypressTabUrl );
-$settings->verifyEnableStatus( ConstantsPage::$strEnableMediaInGrpLabel, ConstantsPage::$enableMediaInGrpCheckbox );
+$settings->gotoTab( ConstantsPage::$buddypress_tab, ConstantsPage::$buddypress_tab_url );
+$settings->verifyEnableStatus( ConstantsPage::$str_enable_media_in_group_label, ConstantsPage::$enable_media_in_group_checkbox );
 
 $I->amOnPage( '/wp-admin/options-general.php?page=bp-components/' );
-$I->waitForElement( ConstantsPage::$grpTableRow, 10 );
-$I->seeElement( ConstantsPage::$enableUserGrpCheckbox );
-$I->checkOption( ConstantsPage::$enableUserGrpCheckbox );
-$I->seeElement( ConstantsPage::$saveBPSettings );
-$I->click( ConstantsPage::$saveBPSettings );
-$I->waitForElement( ConstantsPage::$saveMsgSelector, 20 );
+$I->waitForElement( ConstantsPage::$group_table_row, 10 );
+$I->seeElement( ConstantsPage::$enable_user_group_checkbox );
+$I->checkOption( ConstantsPage::$enable_user_group_checkbox );
+$I->seeElement( ConstantsPage::$save_bp_settings );
+$I->click( ConstantsPage::$save_bp_settings );
+$I->waitForElement( ConstantsPage::$save_msg_selector, 20 );
 
 $buddypress = new BuddypressSettingsPage( $I );
 $buddypress->gotoGroup();
 
-$temp = $buddypress->countGroup( ConstantsPage::$groupListSelector );
+$temp = $buddypress->countGroup( ConstantsPage::$group_list_selector );
 echo "Total no. of groups = " . $temp;
 
 if ( $temp > 0 ) {
 
 	$buddypress->checkMediaInGroup();
-	$I->seeElement( ConstantsPage::$mediaLinkOnGroup );
+	$I->seeElement( ConstantsPage::$media_link_on_group );
 } else {
 
 	$buddypress->createGroup();
 	echo "group is created!";
 	$buddypress->checkMediaInGroup();
-	$I->seeElement( ConstantsPage::$mediaLinkOnGroup );
+	$I->seeElement( ConstantsPage::$media_link_on_group );
 }
 ?>

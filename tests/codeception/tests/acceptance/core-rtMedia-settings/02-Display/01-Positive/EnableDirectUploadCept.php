@@ -13,15 +13,15 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'To check if the user is allowed to upload the media directly' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$displayTab, ConstantsPage::$displayTabUrl );
-$settings->verifyEnableStatus( ConstantsPage::$strDirectUplaodCheckboxLabel, ConstantsPage::$directUploadCheckbox, ConstantsPage::$masonaryCheckbox );
+$settings->gotoTab( ConstantsPage::$display_tab, ConstantsPage::$display_tab_url );
+$settings->verifyEnableStatus( ConstantsPage::$str_direct_uplaod_checkbox_label, ConstantsPage::$directUploadCheckbox, ConstantsPage::$masonary_checkbox );
 
 $buddypress = new BuddypressSettingsPage( $I );
-$buddypress->gotoMedia( ConstantsPage::$userName );
+$buddypress->gotoMedia( ConstantsPage::$user_name );
 
 $uploadmedia = new UploadMediaPage( $I );
-$uploadmedia->uploadMediaDirectly( ConstantsPage::$userName, ConstantsPage::$imageName );
+$uploadmedia->uploadMediaDirectly( ConstantsPage::$user_name, ConstantsPage::$image_name );
 ?>

@@ -13,37 +13,37 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'To check if the lightbox is disabled' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$displayTab, ConstantsPage::$displayTabUrl );
-$settings->verifyDisableStatus( ConstantsPage::$strLightboxCheckboxLabel, ConstantsPage::$lightboxCheckbox, ConstantsPage::$customCssTab );
+$settings->gotoTab( ConstantsPage::$display_tab, ConstantsPage::$display_tab_url );
+$settings->verifyDisableStatus( ConstantsPage::$str_lightbox_checkbox_label, ConstantsPage::$lightbox_checkbox, ConstantsPage::$custom_css_tab );
 
 $buddypress = new BuddypressSettingsPage( $I );
-$buddypress->gotoMedia( ConstantsPage::$userName );
+$buddypress->gotoMedia( ConstantsPage::$user_name );
 
 $uploadmedia = new UploadMediaPage( $I );
-$temp = $buddypress->countMedia( ConstantsPage::$mediaPerPageOnMediaSelector ); // $temp will receive the available no. of media
+$temp = $buddypress->countMedia( ConstantsPage::$media_per_page_on_media_selector ); // $temp will receive the available no. of media
 
-if ( $temp >= ConstantsPage::$minValue ) {
+if ( $temp >= ConstantsPage::$min_value ) {
 
 	$I->scrollTo( '.rtm-gallery-title' );
 
 	$uploadmedia->firstThumbnailMedia();
-	$I->dontSeeElement( ConstantsPage::$closeButton );   //The close button will only be visible if the media is opened in Lightbox
+	$I->dontSeeElement( ConstantsPage::$close_button );   //The close button will only be visible if the media is opened in Lightbox
 } else {
 
 	$I->amOnPage( '/wp-admin/admin.php?page=rtmedia-settings#rtmedia-display' );
-	$I->waitForElement( ConstantsPage::$displayTab, 10 );
-	$settings->verifyDisableStatus( ConstantsPage::$strDirectUplaodCheckboxLabel, ConstantsPage::$directUploadCheckbox, ConstantsPage::$masonaryCheckbox ); //This will check if the direct upload is disabled
+	$I->waitForElement( ConstantsPage::$display_tab, 10 );
+	$settings->verifyDisableStatus( ConstantsPage::$str_direct_uplaod_checkbox_label, ConstantsPage::$directUploadCheckbox, ConstantsPage::$masonary_checkbox ); //This will check if the direct upload is disabled
 
-	$buddypress->gotoMedia( ConstantsPage::$userName );
-	$uploadmedia->uploadMediaUsingStartUploadButton( ConstantsPage::$userName, ConstantsPage::$imageName );
+	$buddypress->gotoMedia( ConstantsPage::$user_name );
+	$uploadmedia->uploadMediaUsingStartUploadButton( ConstantsPage::$user_name, ConstantsPage::$image_name );
 
 	$I->reloadPage();
 	$I->wait( 7 );
 
 	$uploadmedia->firstThumbnailMedia();
-	$I->dontSeeElement( ConstantsPage::$closeButton );   //The close button will only be visible if the media is opened in Lightbox
+	$I->dontSeeElement( ConstantsPage::$close_button );   //The close button will only be visible if the media is opened in Lightbox
 }
 ?>

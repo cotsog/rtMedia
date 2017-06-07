@@ -13,14 +13,14 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Disable upload from activity stream.' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$buddypressTab, ConstantsPage::$buddypressTabUrl );
-$settings->verifyDisableStatus( ConstantsPage::$strMediaUploadFromActivityLabel, ConstantsPage::$mediaUploadFromActivityCheckbox );
+$settings->gotoTab( ConstantsPage::$buddypress_tab, ConstantsPage::$buddypress_tab_url );
+$settings->verifyDisableStatus( ConstantsPage::$str_media_upload_from_activity_label, ConstantsPage::$media_upload_from_activity_checkbox );
 
 $buddypress = new BuddypressSettingsPage( $I );
-$buddypress->gotoActivityPage( ConstantsPage::$userName );
+$buddypress->gotoActivityPage( ConstantsPage::$user_name );
 
-$I->dontSeeElementInDOM( ConstantsPage::$uploadButtonOnAtivityPage );
+$I->dontSeeElementInDOM( ConstantsPage::$upload_button_on_activity_page );
 ?>

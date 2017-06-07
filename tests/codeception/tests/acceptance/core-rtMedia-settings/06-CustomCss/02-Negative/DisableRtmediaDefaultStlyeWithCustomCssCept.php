@@ -12,15 +12,15 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Set custom css code when default rtMedia style is disabled.' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$customCssTab, ConstantsPage::$customCssTabUrl );
-$settings->verifyDisableStatus( ConstantsPage::$defaultStyleLabel, ConstantsPage::$defaultStyleCheckbox );
-$settings->setValue( ConstantsPage::$customCssLabel, ConstantsPage::$cssTextarea, ConstantsPage::$customCssValue );
+$settings->gotoTab( ConstantsPage::$custom_css_tab, ConstantsPage::$custom_css_tab_url );
+$settings->verifyDisableStatus( ConstantsPage::$default_style_label, ConstantsPage::$default_style_checkbox );
+$settings->setValue( ConstantsPage::$custom_css_label, ConstantsPage::$css_text_area, ConstantsPage::$custom_css_value );
 
 $buddypress = new BuddypressSettingsPage( $I );
-$buddypress->gotoActivityPage( ConstantsPage::$userName );
+$buddypress->gotoActivityPage( ConstantsPage::$user_name );
 
-$I->seeInPageSource( ConstantsPage::$customCssValue );
+$I->seeInPageSource( ConstantsPage::$custom_css_value );
 ?>

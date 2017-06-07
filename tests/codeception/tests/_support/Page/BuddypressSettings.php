@@ -7,7 +7,7 @@ use Page\Constants as ConstantsPage;
 class BuddypressSettings {
 
 	public static $userProfileLink = 'a#user-xprofile';
-	public static $mediaLinkOnProfile = 'a#user-media';
+	public static $media_link_on_profile = 'a#user-media';
 	public static $myGroupLink = '#groups-personal';
 	public static $groupNameLink = 'ul#groups-list li:first-child .item .item-title a';
 	protected $tester;
@@ -19,13 +19,13 @@ class BuddypressSettings {
 	/**
 	 * gotoProfilePage() -> Will take the user to his/her profile page
 	 */
-	public function gotoProfile( $userName ) {
+	public function gotoProfile( $user_name ) {
 
 		$I = $this->tester;
 
-		$url = 'members/' . $userName . '/profile';
+		$url = 'members/' . $user_name . '/profile';
 		$I->amOnPage( $url );
-		$I->waitForElement( ConstantsPage::$profilePicture, 5 );
+		$I->waitForElement( ConstantsPage::$profile_picture, 5 );
 	}
 
 	/**
@@ -47,7 +47,7 @@ class BuddypressSettings {
 
 		$I->seeElement( self::$groupNameLink );
 		$I->click( self::$groupNameLink );
-		$I->waitForElement( ConstantsPage::$manageGrpLink, 10 );
+		$I->waitForElement( ConstantsPage::$manage_group_link, 10 );
 	}
 
 	/**
@@ -57,7 +57,7 @@ class BuddypressSettings {
 
 		$I = $this->tester;
 		$I->amonPage( '/groups' );
-		$I->waitForElement( ConstantsPage::$createGroupLink, 5 );
+		$I->waitForElement( ConstantsPage::$create_group_link, 5 );
 	}
 
 	/**
@@ -69,22 +69,22 @@ class BuddypressSettings {
 
 		$I = $this->tester;
 
-		$I->seeElementInDOM( ConstantsPage::$createGroupLink );
-		$I->click( ConstantsPage::$createGroupLink );
+		$I->seeElementInDOM( ConstantsPage::$create_group_link );
+		$I->click( ConstantsPage::$create_group_link );
 
-		$I->waitForElement( ConstantsPage::$createGroupTabs, 5 );
-		$I->scrollTo( ConstantsPage::$createGroupTabs );
+		$I->waitForElement( ConstantsPage::$create_group_tabs, 5 );
+		$I->scrollTo( ConstantsPage::$create_group_tabs );
 
-		$I->seeElementInDOM( ConstantsPage::$groupNameTextbox );
-		$I->fillField( ConstantsPage::$groupNameTextbox, 'Test Group Name from Script' );
+		$I->seeElementInDOM( ConstantsPage::$group_name_textbox );
+		$I->fillField( ConstantsPage::$group_name_textbox, 'Test Group Name from Script' );
 
-		$I->seeElementInDOM( ConstantsPage::$groupDescTextarea );
-		$I->fillField( ConstantsPage::$groupDescTextarea, 'Test Group Desc from Script' );  // Enter group Description
+		$I->seeElementInDOM( ConstantsPage::$group_desc_textarea );
+		$I->fillField( ConstantsPage::$group_desc_textarea, 'Test Group Desc from Script' );  // Enter group Description
 
-		$I->seeElement( ConstantsPage::$createGroupButton );
-		$I->click( ConstantsPage::$createGroupButton );
+		$I->seeElement( ConstantsPage::$create_group_button );
+		$I->click( ConstantsPage::$create_group_button );
 		// $I->wait( 5 );
-		$I->waitForElement( ConstantsPage::$nextGrpButton, 20 );
+		$I->waitForElement( ConstantsPage::$next_group_button, 20 );
 
 		self::gotoGroup();
 	}
@@ -92,37 +92,37 @@ class BuddypressSettings {
 	/**
 	 * gotoActivityPage() -> Will take the user to activity page
 	 */
-	public function gotoActivityPage( $userName ) {
+	public function gotoActivityPage( $user_name ) {
 
 		$I = $this->tester;
 
-		$url = 'members/' . $userName;
+		$url = 'members/' . $user_name;
 		$I->amOnPage( $url );
-		$I->waitForElement( ConstantsPage::$mediaPageScrollPos, 10 );
-		$I->scrollTo( ConstantsPage::$mediaPageScrollPos );
+		$I->waitForElement( ConstantsPage::$media_page_scroll_pos, 10 );
+		$I->scrollTo( ConstantsPage::$media_page_scroll_pos );
 	}
 
 	/**
 	 * gotoMedia() -> Will take the user to media page
 	 */
-	public function gotoMedia( $userName ) {
+	public function gotoMedia( $user_name ) {
 
 		$I = $this->tester;
 
-		$url = 'members/' . $userName . '/media';
+		$url = 'members/' . $user_name . '/media';
 		$I->amOnPage( $url );
 
-		$I->waitForElement( ConstantsPage::$profilePicture, 5 );
+		$I->waitForElement( ConstantsPage::$profile_picture, 5 );
 	}
 
 	/**
 	 * gotoPhotoPage() -> Will take the user to photo page
 	 */
-	public function gotoPhotoPage( $userName ) {
+	public function gotoPhotoPage( $user_name ) {
 
 		$I = $this->tester;
 
-		$url = 'members/' . $userName . '/media/photo';
+		$url = 'members/' . $user_name . '/media/photo';
 		$I->amOnPage( $url );
 		$I->waitForElement( 'div.rtmedia-container', 10 );
 	}
@@ -147,7 +147,7 @@ class BuddypressSettings {
 
 		$I = $this->tester;
 
-		$url = 'members/' . ConstantsPage::$userName . '/media/album/';
+		$url = 'members/' . ConstantsPage::$user_name . '/media/album/';
 		$I->amOnPage( $url );
 		$I->waitForElement( 'div.rtmedia-container', 10 );
 	}
@@ -158,34 +158,34 @@ class BuddypressSettings {
 	public function createNewAlbum() {
 
 		$albumName = 'My test album';
-		$albumCreationMsg = $albumName . ConstantsPage::$albumMsg;
+		$albumCreationMsg = $albumName . ConstantsPage::$album_msg;
 
 		$I = $this->tester;
 
 		self::gotoAlbumPage();
 
-		$I->scrollTo( ConstantsPage::$mediaPageScrollPos );
+		$I->scrollTo( ConstantsPage::$media_page_scroll_pos );
 
-		$I->seeElement( ConstantsPage::$mediaOptionButton );
-		$I->click( ConstantsPage::$mediaOptionButton );
-		$I->waitForElementVisible( ConstantsPage::$optionsPopup, 10 );
+		$I->seeElement( ConstantsPage::$media_option_button );
+		$I->click( ConstantsPage::$media_option_button );
+		$I->waitForElementVisible( ConstantsPage::$options_popup, 10 );
 
-		$I->seeElement( ConstantsPage::$addAlbumButtonLink );
-		$I->click( ConstantsPage::$addAlbumButtonLink );
+		$I->seeElement( ConstantsPage::$add_album_button_link );
+		$I->click( ConstantsPage::$add_album_button_link );
 
-		$I->waitForElementVisible( ConstantsPage::$createAlbumPopup, 10 );
-		$I->seeElement( ConstantsPage::$albumNameTextbox );
-		$I->fillField( ConstantsPage::$albumNameTextbox, $albumName );
-		$I->seeElement( ConstantsPage::$createAlbumButton );
-		$I->click( ConstantsPage::$createAlbumButton );
+		$I->waitForElementVisible( ConstantsPage::$create_album_popup, 10 );
+		$I->seeElement( ConstantsPage::$album_name_textbox );
+		$I->fillField( ConstantsPage::$album_name_textbox, $albumName );
+		$I->seeElement( ConstantsPage::$create_album_button );
+		$I->click( ConstantsPage::$create_album_button );
 		$I->waitForText( $albumCreationMsg, 20 );
 
-		$I->seeElement( ConstantsPage::$closeAlbumButton );
-		$I->click( ConstantsPage::$closeAlbumButton );
+		$I->seeElement( ConstantsPage::$close_album_button );
+		$I->click( ConstantsPage::$close_album_button );
 		echo "Album created";
 
 		$I->reloadPage();
-		$I->waitForElement( ConstantsPage::$profilePicture, 10 );
+		$I->waitForElement( ConstantsPage::$profile_picture, 10 );
 	}
 
 	/**
@@ -197,8 +197,8 @@ class BuddypressSettings {
 		$I = $this->tester;
 		echo "Inside edit album function";
 
-		$I->seeElement( ConstantsPage::$firstAlbum );
-		$I->click( ConstantsPage::$firstAlbum );
+		$I->seeElement( ConstantsPage::$first_album );
+		$I->click( ConstantsPage::$first_album );
 
 		$I->wait( 10 );
 		$tempUri = $I->grabFromCurrentUrl();
@@ -207,27 +207,27 @@ class BuddypressSettings {
 		$t = $tempUri . 'edit/';
 		echo $t;
 		$I->amOnPage( $t );
-		$I->waitForElement( ConstantsPage::$profilePicture, 10 );
+		$I->waitForElement( ConstantsPage::$profile_picture, 10 );
 
-		$I->waitForElementVisible( ConstantsPage::$scrollSelector, 20 );
-		$I->scrollTo( ConstantsPage::$scrollSelector );
+		$I->waitForElementVisible( ConstantsPage::$scroll_selector, 20 );
+		$I->scrollTo( ConstantsPage::$scroll_selector );
 
 		$I->seeElement( ConstantsPage::$albumDescTeaxtarea );
 		$I->fillField( ConstantsPage::$albumDescTeaxtarea, $albumDesc );
-		$I->seeElement( ConstantsPage::$saveAlbumButton );
-		$I->click( ConstantsPage::$saveAlbumButton );
+		$I->seeElement( ConstantsPage::$save_album_button );
+		$I->click( ConstantsPage::$save_album_button );
 
 		$I->wait( 5 );
 		$I->reloadPage();
-		$I->scrollTo( ConstantsPage::$scrollSelector );
+		$I->scrollTo( ConstantsPage::$scroll_selector );
 
 		$I->amOnPage( $tempUri );
 		$I->wait( 5 );
-		$I->scrollTo( ConstantsPage::$scrollSelector );
+		$I->scrollTo( ConstantsPage::$scroll_selector );
 
 		echo "After scroll";
 
-		$I->seeElementInDOM( ConstantsPage::$albumDescSelector );
+		$I->seeElementInDOM( ConstantsPage::$album_desc_selector );
 	}
 
 }

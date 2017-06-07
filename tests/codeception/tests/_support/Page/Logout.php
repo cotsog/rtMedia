@@ -16,13 +16,13 @@ class Logout {
 
 		$I = $this->tester;
 
-		$I->seeElement( ConstantsPage::$metaSection );
-		$I->scrollTo( ConstantsPage::$metaSection );
+		$I->seeElement( ConstantsPage::$meta_section );
+		$I->scrollTo( ConstantsPage::$meta_section );
 
-		$I->seeElement( ConstantsPage::$logoutLink );
-		$I->click( ConstantsPage::$logoutLink );
+		$I->seeElement( ConstantsPage::$logout_link );
+		$I->click( ConstantsPage::$logout_link );
 		// $I->wait( 5 );
-		$I->waitForElement( ConstantsPage::$logoutMsg, 10 );
+		$I->waitForElement( ConstantsPage::$logout_msg, 10 );
 	}
 
 }

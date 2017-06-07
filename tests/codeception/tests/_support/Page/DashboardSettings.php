@@ -23,9 +23,9 @@ class DashboardSettings {
 
 		$I = $this->tester;
 
-		$I->seeElementInDOM( ConstantsPage::$saveSettingsButtonBottom );
-		$I->scrollTo( ConstantsPage::$saveSettingsButtonBottom );
-		$I->click( ConstantsPage::$saveSettingsButtonBottom );
+		$I->seeElementInDOM( ConstantsPage::$save_settings_button_bottom );
+		$I->scrollTo( ConstantsPage::$save_settings_button_bottom );
+		$I->click( ConstantsPage::$save_settings_button_bottom );
 		$I->waitForText( 'Settings saved successfully!', 30 );
 	}
 
@@ -36,8 +36,8 @@ class DashboardSettings {
 
 		$I = $this->tester;
 
-		$I->click( ConstantsPage::$rtMediaSeetings );
-		$I->waitForElement( ConstantsPage::$buddypressTab, 10 );
+		$I->click( ConstantsPage::$rtmedia_settings );
+		$I->waitForElement( ConstantsPage::$buddypress_tab, 10 );
 	}
 
 	/**
@@ -49,7 +49,7 @@ class DashboardSettings {
 
 		self::gotortMediaSettings();
 
-		$urlStr = ConstantsPage::$rtMediaSettingsUrl . $tabUrl;
+		$urlStr = ConstantsPage::$rtmedia_settings_url . $tabUrl;
 
 		$I->seeElementInDOM( $tabSelector );
 
@@ -58,7 +58,7 @@ class DashboardSettings {
 		}
 
 		$I->click( $tabSelector );
-		$I->waitForElement( ConstantsPage::$topSaveButton, 5 );
+		$I->waitForElement( ConstantsPage::$top_save_button, 5 );
 	}
 
 	public function setMediaSize( $strLabel, $widthTextbox, $width, $heightTextbox = 'no', $height = 'no', $scrollPos = 'no' ) {
@@ -217,8 +217,8 @@ class DashboardSettings {
 	public function disableDirectUpload() {
 		$I = $this->tester;
 		$I->amOnPage( '/wp-admin/admin.php?page=rtmedia-settings#rtmedia-display' );
-		$I->waitForElement( ConstantsPage::$displayTab, 10 );
-		$status = $this->verifyDisableStatus( ConstantsPage::$strDirectUplaodCheckboxLabel, ConstantsPage::$directUploadCheckbox, ConstantsPage::$masonaryCheckbox ); //This will check if the direct upload is disabled
+		$I->waitForElement( ConstantsPage::$display_tab, 10 );
+		$status = $this->verifyDisableStatus( ConstantsPage::$str_direct_uplaod_checkbox_label, ConstantsPage::$directUploadCheckbox, ConstantsPage::$masonary_checkbox ); //This will check if the direct upload is disabled
 	}
 
 }

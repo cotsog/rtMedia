@@ -12,16 +12,16 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Disable organize media into albums.' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$buddypressTab, ConstantsPage::$buddypressTabUrl );
-$settings->verifyDisableStatus( ConstantsPage::$strEnableAlbumLabel, ConstantsPage::$enableAlbumCheckbox );
+$settings->gotoTab( ConstantsPage::$buddypress_tab, ConstantsPage::$buddypress_tab_url );
+$settings->verifyDisableStatus( ConstantsPage::$str_enable_album_label, ConstantsPage::$enable_album_checkbox );
 
-$settings->verifyEnableStatus( ConstantsPage::$strEnableMediaInProLabel, ConstantsPage::$enableMediaInProCheckbox ); //This must be enabled else it will not identify the element in front end.
+$settings->verifyEnableStatus( ConstantsPage::$str_enable_media_in_pro_label, ConstantsPage::$enable_media_in_pro_checkbox ); //This must be enabled else it will not identify the element in front end.
 
 $gotoMediaPage = new BuddypressSettingsPage( $I );
-$gotoMediaPage->gotoMedia( ConstantsPage::$userName );
+$gotoMediaPage->gotoMedia( ConstantsPage::$user_name );
 
-$I->dontSeeElement( ConstantsPage::$mediaAlbumLink );
+$I->dontSeeElement( ConstantsPage::$media_album_link );
 ?>

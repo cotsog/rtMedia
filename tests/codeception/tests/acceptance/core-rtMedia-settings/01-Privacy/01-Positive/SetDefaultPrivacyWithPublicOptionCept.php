@@ -17,22 +17,22 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'To check if the user is allowed to set default privacy with public option' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password, ConstantsPage::$saveSession );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password, ConstantsPage::$save_session );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$privacyTab, ConstantsPage::$privacyTabUrl );
-$settings->verifyEnableStatus( ConstantsPage::$privacyLabel, ConstantsPage::$privacyCheckbox );
-$settings->verifyEnableStatus( ConstantsPage::$privacyUserOverrideLabel, ConstantsPage::$privacyUserOverrideCheckbox );
-$settings->verifySelectOption( ConstantsPage::$defaultPrivacyLabel, ConstantsPage::$publicRadioButton );
+$settings->gotoTab( ConstantsPage::$privacy_tab, ConstantsPage::$privacy_tab_url );
+$settings->verifyEnableStatus( ConstantsPage::$privacy_label, ConstantsPage::$privacy_checkbox );
+$settings->verifyEnableStatus( ConstantsPage::$privacy_user_override_label, ConstantsPage::$privacy_user_override_checkbox );
+$settings->verifySelectOption( ConstantsPage::$defaultPrivacyLabel, ConstantsPage::$public_radio_button );
 
 $I->amOnPage( '/wp-admin/admin.php?page=rtmedia-settings#rtmedia-bp' );
-$I->waitForElement( ConstantsPage::$buddypressTab , 10);
-$settings->verifyEnableStatus( ConstantsPage::$strMediaUploadFromActivityLabel, ConstantsPage::$mediaUploadFromActivityCheckbox );
+$I->waitForElement( ConstantsPage::$buddypress_tab , 10);
+$settings->verifyEnableStatus( ConstantsPage::$str_media_upload_from_activity_label, ConstantsPage::$media_upload_from_activity_checkbox );
 
 $buddypress = new BuddypressSettingsPage( $I );
-$buddypress->gotoActivityPage( ConstantsPage::$userName );
+$buddypress->gotoActivityPage( ConstantsPage::$user_name );
 
-$I->seeElementInDOM( ConstantsPage::$privacyDropdown );
+$I->seeElementInDOM( ConstantsPage::$privacy_dropdown );
 
 $uploadmedia = new UploadMediaPage( $I );
 $uploadmedia->postStatus( $status );
@@ -40,7 +40,7 @@ $uploadmedia->postStatus( $status );
 $logout = new LogoutPage( $I );
 $logout->logout();
 
-$buddypress->gotoActivityPage( ConstantsPage::$userName );
-$I->waitForElementVisible( ConstantsPage::$activitySelector, 20);
+$buddypress->gotoActivityPage( ConstantsPage::$user_name );
+$I->waitForElementVisible( ConstantsPage::$activity_selector, 20);
 
 ?>

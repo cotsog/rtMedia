@@ -14,16 +14,16 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'To disable the privacy settings for user.' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$privacyTab, ConstantsPage::$privacyTabUrl );
-$settings->verifyEnableStatus( ConstantsPage::$privacyLabel, ConstantsPage::$privacyCheckbox );
-$settings->verifyDisableStatus( ConstantsPage::$privacyUserOverrideLabel, ConstantsPage::$privacyUserOverrideCheckbox );
+$settings->gotoTab( ConstantsPage::$privacy_tab, ConstantsPage::$privacy_tab_url );
+$settings->verifyEnableStatus( ConstantsPage::$privacy_label, ConstantsPage::$privacy_checkbox );
+$settings->verifyDisableStatus( ConstantsPage::$privacy_user_override_label, ConstantsPage::$privacy_user_override_checkbox );
 
 $buddypress = new BuddypressSettingsPage( $I );
-$buddypress->gotoActivityPage( ConstantsPage::$userName );
+$buddypress->gotoActivityPage( ConstantsPage::$user_name );
 
-$I->dontSeeElement( ConstantsPage::$privacyDropdown );
+$I->dontSeeElement( ConstantsPage::$privacy_dropdown );
 
 ?>

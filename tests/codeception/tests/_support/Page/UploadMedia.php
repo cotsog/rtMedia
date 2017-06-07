@@ -9,7 +9,7 @@ class UploadMedia {
 	public static $galleryLable = '.rtm-gallery-title';
 	public static $uploadLink = '.rtmedia-upload-media-link';
 	public static $selectFileButton = 'input#rtMedia-upload-button';
-	public static $fileList = '#rtmedia_uploader_filelist';
+	public static $file_list = '#rtmedia_uploader_filelist';
 	public static $uploadTermsCheckbox = '#rtmedia_upload_terms_conditions';
 	public static $uploadMediaButton = '.start-media-upload';
 	public static $firstChild = 'ul.rtm-gallery-list li:first-child';
@@ -31,22 +31,22 @@ class UploadMedia {
 	/**
 	 * gotoMediaPage() -> Will take the user to media page
 	 */
-	public function gotoMediaPage( $userName, $link ) {
+	public function gotoMediaPage( $user_name, $link ) {
 
 		$I = $this->tester;
 
-		$url = 'members/' . $userName . '/media';
+		$url = 'members/' . $user_name . '/media';
 
 		$I->amonPage( $url );
-		$I->waitForElement( ConstantsPage::$profilePicture, 5 );
+		$I->waitForElement( ConstantsPage::$profile_picture, 5 );
 
-		$I->scrollTo( ConstantsPage::$mediaPageScrollPos );
+		$I->scrollTo( ConstantsPage::$media_page_scroll_pos );
 		$I->seeElement( $link );
 		$I->click( $link );
 
-		$I->waitForElement( ConstantsPage::$profilePicture, 5 );
+		$I->waitForElement( ConstantsPage::$profile_picture, 5 );
 
-		$I->scrollTo( ConstantsPage::$mediaPageScrollPos );
+		$I->scrollTo( ConstantsPage::$media_page_scroll_pos );
 
 		$I->wait( 5 );
 	}
@@ -65,47 +65,47 @@ class UploadMedia {
 	/**
 	 * uploadMedia() -> Will perform necessary steps to upload media. In this case it will work for image media type.
 	 */
-	// public function uploadMedia( $userName, $mediaFile, $link ){
-	public function uploadMedia( $userName, $mediaFile ) {
+	// public function uploadMedia( $user_name, $mediaFile, $link ){
+	public function uploadMedia( $user_name, $mediaFile ) {
 
 		$I = $this->tester;
 
-		$I->seeElement( ConstantsPage::$mediaPageScrollPos );
-		$I->scrollTo( ConstantsPage::$mediaPageScrollPos );
+		$I->seeElement( ConstantsPage::$media_page_scroll_pos );
+		$I->scrollTo( ConstantsPage::$media_page_scroll_pos );
 		$I->waitForElementVisible( self::$uploadLink, 20 );
 		$I->click( self::$uploadLink );
 		$I->waitForElement( self::$uploadContainer, 10 );
 		$I->seeElementInDOM( self::$selectFileButton );
 		$I->attachFile( self::$uploadFile, $mediaFile );
-		$I->waitForElement( ConstantsPage::$fileList, 20 );
+		$I->waitForElement( ConstantsPage::$file_list, 20 );
 	}
 
 	/**
 	 * uploadMediaUsingStartUploadButton() -> Will the media when 'Direct Upload' is not enabled
 	 */
-	// public function uploadMediaUsingStartUploadButton( $userName, $mediaFile, $link ){
-	public function uploadMediaUsingStartUploadButton( $userName, $mediaFile ) {
+	// public function uploadMediaUsingStartUploadButton( $user_name, $mediaFile, $link ){
+	public function uploadMediaUsingStartUploadButton( $user_name, $mediaFile ) {
 
 		$I = $this->tester;
 
-		self::uploadMedia( $userName, $mediaFile );
+		self::uploadMedia( $user_name, $mediaFile );
 
 		$I->seeElement( self::$uploadMediaButton );
 		$I->click( self::$uploadMediaButton );
 
-		$I->waitForElementNotVisible( ConstantsPage::$fileList, 20 );
+		$I->waitForElementNotVisible( ConstantsPage::$file_list, 20 );
 	}
 
 	/**
 	 * uploadMediaDirectly() -> Will upload the media when 'Direct Upload' is enabled
 	 */
-	public function uploadMediaDirectly( $userName, $mediaFile ) {
+	public function uploadMediaDirectly( $user_name, $mediaFile ) {
 
 		$I = $this->tester;
 
-		self::uploadMedia( $userName, $mediaFile );
+		self::uploadMedia( $user_name, $mediaFile );
 
-		$I->waitForElementNotVisible( ConstantsPage::$fileList, 20 );
+		$I->waitForElementNotVisible( ConstantsPage::$file_list, 20 );
 	}
 
 	/**
@@ -131,7 +131,7 @@ class UploadMedia {
 		self::addStatus();
 
 		$I->fillfield( self::$whatIsNewTextarea, $status );
-		$I->seeElement( ConstantsPage::$privacyDropdown );
+		$I->seeElement( ConstantsPage::$privacy_dropdown );
 
 		$I->click( self::$postUpdateButton );
 		$I->waitForText( $status, 20 );
@@ -150,9 +150,9 @@ class UploadMedia {
 		$I->seeElement( self::$mediaButtonOnActivity );
 		$I->attachFile( self::$uploadFromActivity, $mediaFile );
 
-		$I->waitForElement( ConstantsPage::$fileList, 20 );
+		$I->waitForElement( ConstantsPage::$file_list, 20 );
 		$I->click( self::$postUpdateButton );
-		$I->waitForElementNotVisible( ConstantsPage::$fileList, 20 );
+		$I->waitForElementNotVisible( ConstantsPage::$file_list, 20 );
 	}
 
 	/**
@@ -173,18 +173,18 @@ class UploadMedia {
 			for ( $i = 0; $i < $numOfMedia + 1; $i ++ ) {
 
 				$I->attachFile( self::$uploadFromActivity, $mediaFile );
-				$I->waitForElement( ConstantsPage::$fileList, 20 );
+				$I->waitForElement( ConstantsPage::$file_list, 20 );
 			}
 		} else {
 			$tempMedia = 5;
 			for ( $i = 0; $i < $tempMedia; $i ++ ) {
 				$I->attachFile( self::$uploadFromActivity, $mediaFile );
-				$I->waitForElement( ConstantsPage::$fileList, 20 );
+				$I->waitForElement( ConstantsPage::$file_list, 20 );
 			}
 		}
 
 		$I->click( self::$postUpdateButton );
-		$I->waitForElementNotVisible( ConstantsPage::$fileList, 20 );
+		$I->waitForElementNotVisible( ConstantsPage::$file_list, 20 );
 		$I->reloadPage();
 	}
 
@@ -196,7 +196,7 @@ class UploadMedia {
 		$I = $this->tester;
 
 		$I->click( self::$firstChild );
-		$I->waitForElement( ConstantsPage::$mediaContainer, 10 );
+		$I->waitForElement( ConstantsPage::$media_container, 10 );
 	}
 
 }

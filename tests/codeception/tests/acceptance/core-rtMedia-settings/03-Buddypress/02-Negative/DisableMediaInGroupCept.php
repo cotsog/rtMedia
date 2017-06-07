@@ -12,14 +12,14 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Disabled media for group.' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$buddypressTab, ConstantsPage::$buddypressTabUrl );
-$settings->verifyDisableStatus( ConstantsPage::$strEnableMediaInGrpLabel, ConstantsPage::$enableMediaInGrpCheckbox );
+$settings->gotoTab( ConstantsPage::$buddypress_tab, ConstantsPage::$buddypress_tab_url );
+$settings->verifyDisableStatus( ConstantsPage::$str_enable_media_in_group_label, ConstantsPage::$enable_media_in_group_checkbox );
 
 $buddypress = new BuddypressSettingsPage( $I );
 $buddypress->gotoGroup();
 
-$I->dontSeeElement( ConstantsPage::$mediaLinkOnGroup );
+$I->dontSeeElement( ConstantsPage::$media_link_on_group );
 ?>

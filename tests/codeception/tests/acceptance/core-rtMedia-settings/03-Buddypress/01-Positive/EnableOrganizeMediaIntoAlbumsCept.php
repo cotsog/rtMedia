@@ -12,14 +12,14 @@ $I = new AcceptanceTester( $scenario );
 $I->wantTo( 'Check if the user is allowed to Organize media into albums.' );
 
 $loginPage = new LoginPage( $I );
-$loginPage->loginAsAdmin( ConstantsPage::$userName, ConstantsPage::$password );
+$loginPage->loginAsAdmin( ConstantsPage::$user_name, ConstantsPage::$password );
 
 $settings = new DashboardSettingsPage( $I );
-$settings->gotoTab( ConstantsPage::$buddypressTab, ConstantsPage::$buddypressTabUrl );
-$settings->verifyEnableStatus( ConstantsPage::$strEnableAlbumLabel, ConstantsPage::$enableAlbumCheckbox );
+$settings->gotoTab( ConstantsPage::$buddypress_tab, ConstantsPage::$buddypress_tab_url );
+$settings->verifyEnableStatus( ConstantsPage::$str_enable_album_label, ConstantsPage::$enable_album_checkbox );
 
 $gotoMediaPage = new BuddypressSettingsPage( $I );
-$gotoMediaPage->gotoMedia( ConstantsPage::$userName );
+$gotoMediaPage->gotoMedia( ConstantsPage::$user_name );
 
-$I->seeElement( ConstantsPage::$mediaAlbumLink );
+$I->seeElement( ConstantsPage::$media_album_link );
 ?>
